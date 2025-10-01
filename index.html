@@ -550,7 +550,7 @@
 </section>
 
   <section>
-    <h2>Requirements</h2>
+    <h2>Requirements for Phase I </h2>
     <div class="requirements">
       <div class="req-card">✅ Google Drive PPT Link</div>
       <div class="req-card">✅ GitHub Repo Link</div>
@@ -563,7 +563,7 @@
   <div style="max-width: 800px; margin: 0 auto; text-align: left;">
     
     <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
-      <img src="https://via.placeholder.com/80" alt="Q1" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <img src="https://wallpaperaccess.com/full/210938.jpg" alt="Q1" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
       <div>
         <h3 style="font-size:1.5rem; margin-bottom:10px;">Can our team change members after registration?</h3>
         <p style="color:#ccc; line-height:1.6;">No, team members or the team leader cannot be changed after registration. Once registered, the team composition must remain the same.</p>
@@ -571,7 +571,7 @@
     </div>
     
     <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
-      <img src="https://via.placeholder.com/80" alt="Q2" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <img src="https://wallpaperaccess.com/full/210938.jpg" alt="Q2" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
       <div>
         <h3 style="font-size:1.5rem; margin-bottom:10px;">Is there a specific format for the Idea Submission?</h3>
         <p style="color:#ccc; line-height:1.6;">Yes, the idea must be submitted in a PowerPoint presentation (PPT) with a maximum of 7 slides. You can download the PPT template from the website.</p>
@@ -581,14 +581,14 @@
    
     
     <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
-      <img src="https://via.placeholder.com/80" alt="Q4" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <img src="https://wallpaperaccess.com/full/210938.jpg" alt="Q4" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
       <div>
         <h3 style="font-size:1.5rem; margin-bottom:10px;">What are the key evaluation criteria for the idea submission?</h3>
         <p style="color:#ccc; line-height:1.6;">The evaluation will focus on the originality of the idea, its alignment with SDGs, technical complexity, feasibility, and potential for meaningful impact. Additionally, user experience and future development opportunities will be considered.</p>
       </div>
     </div>
     <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
-  <img src="https://via.placeholder.com/80" alt="Q6" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+  <img src="https://wallpaperaccess.com/full/210938.jpg" alt="Q6" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
   <div>
     <h3 style="font-size:1.5rem; margin-bottom:10px;">May I use the Adya.ai platform in Round 1?</h3>
     <p style="color:#ccc; line-height:1.6;">It’s not compulsory for Round 1, but you will need to use the Adya.ai platform in Round 2 for sure.</p>
@@ -600,7 +600,7 @@
   </div>
 </section>
 <!-- Partners & Collaboration Section -->
-<section id="partners" style="padding:80px 10%; background:#1a1a2e; color:#fff; text-align:center;">
+<section id="partners" style="padding:80px 10%; background:#f1f1f1; color:#111010; text-align:center;">
   <h2 style="font-size:2.8rem; margin-bottom:20px; font-weight:700;">Organized By</h2>
   <p style="font-size:1.2rem; margin-bottom:40px;">Department of Computer Science and Engineering<br>in collaboration with GDG<br>Sponsored by Adya.ai</p>
   
@@ -628,6 +628,7 @@
 
 
   <section>
+    
     <h2>Final Evaluation</h2>
     <p>The final round will be conducted offline at the Collab Space on Oct 11. Teams will be given additional problem statements and asked to extend their solutions using Adya.ai. Evaluation will be based on technical implementation, innovation, and overall presentation quality.</p>
   </section>
@@ -663,16 +664,7 @@
       </p>
     </div>
     
-    <!-- Social Links -->
-    <div style="flex:1; min-width:220px; text-align:left;">
-  <h4 style="color:#fff; font-size:1.2rem; margin-bottom:12px;">Find Us Here:</h4>
-  <div style="display:flex; gap:15px; align-items:center;">
-    <a href="https://www.linkedin.com/in/department-of-cse-a725a3245/" target="_blank" style="display:inline-block; width:32px; height:32px;">
-      <img src="" alt="LinkedIn" style="width:100%; height:100%; object-fit:contain;">
-    </a>
-    <a href="https://www.instagram.com/srieshwar_cbe/" target="_blank" style="display:inline-block; width:32px; height:32px;">
-      <img src="https://www.bing.com/th/id/OIP.gB0IPp1YXxDdds6X2cKocgHaHZ?w=205&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2" alt="Instagram" style="width:100%; height:100%; object-fit:contain;">
-    </a>
+    
     
   </div>
 </div>
@@ -747,31 +739,60 @@
 body {
   padding-top: 60px;
 }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.countdown div span {
+  animation: pulse 1s infinite;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.countdown div span.change {
+  animation: pulse 0.5s ease;
+  color: #ff4db3;
+}
+
 
   </style>
 
   <script>
-    const countdown = () => {
-      const endDate = new Date("Oct 9, 2025 9:00:00").getTime();
-      const now = new Date().getTime();
-      const gap = endDate - now;
+    function animateCountdownChange(id, newValue) {
+  const elem = document.getElementById(id);
+  if(elem.innerText !== newValue) {
+    elem.classList.add('change');
+    setTimeout(() => {
+      elem.innerText = newValue;
+      elem.classList.remove('change');
+    }, 300);
+  }
+}
 
-      const second = 1000;
-      const minute = second * 60;
-      const hour = minute * 60;
-      const day = hour * 24;
+const countdown = () => {
+  const endDate = new Date("Oct 9, 2025 9:00:00").getTime();
+  const now = new Date().getTime();
+  const gap = endDate - now;
 
-      const days = Math.floor(gap / day);
-      const hours = Math.floor((gap % day) / hour);
-      const minutes = Math.floor((gap % hour) / minute);
-      const seconds = Math.floor((gap % minute) / second);
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
 
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
-    };
-    setInterval(countdown, 1000);
+  const days = Math.floor(gap / day);
+  const hours = Math.floor((gap % day) / hour);
+  const minutes = Math.floor((gap % hour) / minute);
+  const seconds = Math.floor((gap % minute) / second);
+
+  animateCountdownChange('days', days);
+  animateCountdownChange('hours', hours);
+  animateCountdownChange('minutes', minutes);
+  animateCountdownChange('seconds', seconds);
+};
+setInterval(countdown, 1000);
+
+   
   </script>
 </body>
 </html>
