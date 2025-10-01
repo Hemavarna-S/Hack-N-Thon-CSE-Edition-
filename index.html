@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hack 'in' Thon | CSE Edition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+    body {background: #fff; color: #333; overflow-x: hidden;}
+    
+    header {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    header .content {position: relative; z-index: 2; color: #fff;}
+    header h2 {font-size: 1rem; margin-bottom: 10px; letter-spacing: 2px; font-weight: 400; text-transform: uppercase;}
+    header h1 {font-size: 3.8rem; font-weight: 800; text-transform: uppercase; line-height: 1.2;}
+    header p {font-size: 1.3rem; margin-top: 15px;}
+
+    .cta-btn {display: inline-block; margin-top: 25px; padding: 12px 25px; background: #ff0099; color: #fff; border-radius: 30px; text-decoration: none; font-weight: 600; transition: 0.3s;}
+    .cta-btn:hover {background: #ff4db3;}
+    
+    .countdown {display: flex; justify-content: center; gap: 30px; margin-top: 30px;}
+    .countdown div {text-align: center;}
+    .countdown span {display: block; font-size: 2rem; font-weight: bold; color: #ff0099;}
+    .countdown small {font-size: 0.9rem;}
+
+    section {padding: 80px 10%; text-align: center;}
+    section h2 {font-size: 2.2rem; margin-bottom: 30px; font-weight: 700;}
+    section p {max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.6;}
+
+    .timeline {position: relative; max-width: 800px; margin: auto;}
+    .timeline::after {content: ''; position: absolute; width: 4px; background: #ff0099; top: 0; bottom: 0; left: 50%; margin-left: -2px;}
+    .timeline-item {padding: 20px; background: #fff; position: relative; width: 50%;}
+    .timeline-item.left {left: 0;}
+    .timeline-item.right {left: 50%;}
+    .timeline-item::after {content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background: #ff0099; top: 20px; border-radius: 50%; z-index: 1;}
+    .timeline-item.right::after {left: -10px;}
+    .timeline-item h3 {font-size: 1.2rem; margin-bottom: 10px; color: #ff0099;}
+
+    .requirements {display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
+    .req-card {flex: 1 1 250px; padding: 20px; border-radius: 10px; background: rgba(255,255,255,0.9); box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.3s;}
+    .req-card:hover {transform: translateY(-10px);}
+
+    /* Themes Section */
+    .themes-section {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 80px 10%;
+      text-align: center;
+    }
+    
+    .themes-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .sdg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .sdg-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .sdg-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    /* SDG Colors */
+    .sdg-1 { background: #e5243b; color: #fff; }
+    .sdg-2 { background: #dda63a; color: #fff; }
+    .sdg-3 { background: #4c9f38; color: #fff; }
+    .sdg-4 { background: #c5192d; color: #fff; }
+    .sdg-5 { background: #ff3a21; color: #fff; }
+    .sdg-6 { background: #26bde2; color: #fff; }
+    .sdg-7 { background: #fcc30b; color: #000; }
+    .sdg-8 { background: #a21942; color: #fff; }
+    .sdg-9 { background: #fd6925; color: #fff; }
+    .sdg-10 { background: #dd1367; color: #fff; }
+    .sdg-11 { background: #fd9d24; color: #000; }
+    .sdg-12 { background: #bf8b2e; color: #fff; }
+    .sdg-13 { background: #3f7e44; color: #fff; }
+    .sdg-14 { background: #0a97d9; color: #fff; }
+    .sdg-15 { background: #56c02b; color: #fff; }
+    .sdg-16 { background: #00689d; color: #fff; }
+    .sdg-17 { background: #19486a; color: #fff; }
+    
+    .sdg-number {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: block;
+    }
+    
+    .sdg-title {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    
+    .know-more-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 30px;
+      background: transparent;
+      color: #26bde2;
+      border: 2px solid #26bde2;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    
+    .know-more-btn:hover {
+      background: #26bde2;
+      color: #fff;
+    }
+
+    /* Rewards Section - Exact Match */
+    .rewards-section {
+      background: linear-gradient(135deg, #2a2a3e, #1e1e2e);
+      color: #fff;
+      padding: 80px 10%;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .rewards-section h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .trophy-emoji {
+      font-size: 3rem;
+    }
+    
+    .prize-pool {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 60px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .rewards-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 60px;
+      width: 100%;
+    }
+    
+    .detective-character {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+    
+    .detective-character img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.4));
+    }
+    
+    .rewards-list {
+      flex: 1;
+      max-width: 600px;
+      text-align: left;
+    }
+    
+    .reward-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .reward-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+    }
+    
+    .trophy-icon {
+      width: 60px;
+      height: 60px;
+      background: #4a4a6a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 25px;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .reward-details {
+      flex: 1;
+    }
+    
+    .reward-details h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .reward-amount {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    
+    .reward-description {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    footer {background: #0a0a0a; color: #ddd; padding: 60px 20px; text-align: center; position: relative;}
+    footer .footer-top {margin-bottom: 20px;}
+    footer h3 {font-size: 1.5rem; margin-bottom: 10px; color: #fff;}
+    footer p {margin-bottom: 20px; font-size: 0.95rem;}
+    footer a {color: #ff0099; text-decoration: none; margin: 0 10px; transition: 0.3s;}
+    footer a:hover {color: #fff;}
+    footer .socials a {margin: 0 8px; font-size: 1.2rem;}
+    footer .bottom {margin-top: 20px; font-size: 0.85rem; color: #777;}
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .rewards-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+      }
+      
+      .rewards-list {
+        text-align: center;
+      }
+      
+      .reward-item {
+        text-align: left;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        left: 0 !important;
+      }
+      
+      .timeline::after {
+        left: 20px;
+      }
+      
+      .timeline-item::after {
+        left: 10px !important;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .countdown {
+        gap: 15px;
+      }
+      
+      .sdg-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+      }
+      
+      .sdg-number {
+        font-size: 2rem;
+      }
+      
+      .sdg-title {
+        font-size: 0.8rem;
+      }
+      
+      .prize-pool {
+        font-size: 2.5rem;
+      }
+      
+      .rewards-section h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <nav class="site-nav">
+  <div class="container">
+    <div class="logo">Hack ‘in’ Thon <span class="edition">| CSE Edition 2025</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#themes">Themes</a></li>
+      <li><a href="#prize">Prize</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#sponsor">Sponsor</a></li>
+      <li><a href="#judges">Judges</a></li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1br3AXZa9YwxKfNGVWSjbhwwb3UCDVqZi/view?usp=sharing" class="download-btn" download>Template</a>
+  </div>
+</nav>
+
+
+  <header>
+    <div class="content">
+      <h2>Dept. of CSE | GDG Collaboration | Sponsored by Adya.ai</h2>
+      <h1>Hack 'in' Thon <br> CSE Edition 2025</h1>
+      <p>Innovating Solutions for a Smarter Campus</p>
+      <a href="#about" class="cta-btn">Learn More</a>
+      <div class="countdown" id="countdown">
+        <div><span id="days"></span><small>Days</small></div>
+        <div><span id="hours"></span><small>Hours</small></div>
+        <div><span id="minutes"></span><small>Minutes</small></div>
+        <div><span id="seconds"></span><small>Seconds</small></div>
+      </div>
+    </div>
+    
+  </header>
+
+  <section id="about">
+    <h2>About the Event</h2>
+    <p>Hack 'in' Thon 2025 is a collaborative hackathon hosted by the Department of CSE in partnership with GDG and proudly sponsored by Adya.ai. The event challenges students to design and implement impactful solutions for real-world campus issues using the Adya.ai platform. Teams of 3–4 will compete in two evaluation rounds for innovation, creativity, and technical execution.</p>
+  </section>
+
+  <!-- SDG Themes Section -->
+  <!-- SDG Themes Section (Filtered) -->
+<section class="themes-section">
+  <h2>⚡ THEMES ⚡</h2>
+  <div class="sdg-grid">
+    <!-- Quality Education -->
+    <div class="sdg-card sdg-4">
+      <span class="sdg-number">1</span>
+      <div class="sdg-title">Campus Services</div>
+    </div>
+
+    <!-- Sustainable Cities and Communities -->
+    <div class="sdg-card sdg-11">
+      <span class="sdg-number">2</span>
+      <div class="sdg-title">Sustainability</div>
+    </div>
+
+    <!-- Climate Action -->
+    <div class="sdg-card sdg-3">
+      <span class="sdg-number">3</span>
+      <div class="sdg-title">Academics</div>
+    </div>
+
+    <!-- Partnerships for the Goals -->
+    <div class="sdg-card sdg-4">
+      <span class="sdg-number">4</span>
+      <div class="sdg-title">Community</div>
+    </div>
+  </div>
+  <a href="#" class="know-more-btn">Know More About Themes</a>
+</section>
+
+
+  <section>
+    <h2>Event Schedule</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <h3>Oct 3 – 6:00 PM</h3>
+        <p>Team Leads Briefing</p>
+      </div>
+      <div class="timeline-item right">
+        <h3>Oct 3</h3>
+        <p>Problem Statement Release</p>
+      </div>
+      <div class="timeline-item left">
+        <h3>Oct 4</h3>
+        <p>Technical Session by Adya.ai</p>
+      </div>
+      <div class="timeline-item right">
+        <h3>Oct 7</h3>
+        <p>Round 1 – Online Submission</p>
+      </div>
+      <div class="timeline-item left">
+        <h3>Oct 11</h3>
+        <p>Round 2 – Final Evaluation (Offline)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rewards Section - Exact Match with Detective Character -->
+  <section class="rewards-section">
+    <h2>Rewards <span class="trophy-emoji">🏆</span></h2>
+    <div class="prize-pool">PRIZE POOL OF INR 10K</div>
+    
+    <div class="rewards-container">
+      <div class="detective-character">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <!-- Detective Character SVG -->
+          <!-- Head -->
+          <ellipse cx="200" cy="150" rx="70" ry="80" fill="#f4a261"/>
+          
+          <!-- Hat -->
+          <ellipse cx="200" cy="100" rx="85" ry="25" fill="#8b4513"/>
+          <rect x="160" y="75" width="80" height="50" fill="#deb887" rx="10"/>
+          <rect x="170" y="85" width="60" height="30" fill="#654321" rx="5"/>
+          
+          <!-- Eyes -->
+          <circle cx="180" cy="140" r="8" fill="#000"/>
+          <circle cx="220" cy="140" r="8" fill="#000"/>
+          <circle cx="182" cy="138" r="3" fill="#fff"/>
+          <circle cx="222" cy="138" r="3" fill="#fff"/>
+          
+          <!-- Nose -->
+          <ellipse cx="200" cy="160" rx="4" ry="6" fill="#e76f51"/>
+          
+          <!-- Mouth -->
+          <path d="M190 175 Q200 185 210 175" stroke="#654321" stroke-width="2" fill="none"/>
+          
+          <!-- Magnifying Glass -->
+          <circle cx="280" cy="200" r="35" fill="none" stroke="#c0c0c0" stroke-width="8"/>
+          <circle cx="280" cy="200" r="25" fill="rgba(173,216,230,0.3)"/>
+          <line x1="310" y1="230" x2="340" y2="260" stroke="#8b4513" stroke-width="12" stroke-linecap="round"/>
+          
+          <!-- Body -->
+          <rect x="150" y="230" width="100" height="150" fill="#8b4513" rx="15"/>
+          
+          <!-- Coat -->
+          <rect x="140" y="250" width="120" height="120" fill="#654321" rx="10"/>
+          
+          <!-- Arms -->
+          <ellipse cx="120" cy="300" rx="20" ry="50" fill="#f4a261"/>
+          <ellipse cx="280" cy="250" rx="20" ry="40" fill="#f4a261"/>
+          
+          <!-- Legs -->
+          <rect x="170" y="370" width="25" height="80" fill="#2f4f4f"/>
+          <rect x="205" y="370" width="25" height="80" fill="#2f4f4f"/>
+          
+          <!-- Shoes -->
+          <ellipse cx="182" cy="460" rx="20" ry="12" fill="#000"/>
+          <ellipse cx="218" cy="460" rx="20" ry="12" fill="#000"/>
+          
+          <!-- Briefcase -->
+          <rect x="90" y="350" width="40" height="30" fill="#8b4513" rx="5"/>
+          <rect x="95" y="355" width="30" height="20" fill="#654321"/>
+          <circle cx="120" cy="365" r="3" fill="#ffd700"/>
+        </svg>
+      </div>
+      
+      <div class="rewards-list">
+        <div class="reward-item">
+          <div class="trophy-icon">🏆</div>
+          <div class="reward-details">
+            <h3>WINNER</h3>
+            <div class="reward-amount">₹5,000</div>
+            <div class="reward-description">A cash prize sponsored by Adya.ai, along with a trophy and certificates, will be awarded to the best project that outshines all other submissions.</div>
+          </div>
+        </div>
+        
+        <div class="reward-item">
+          <div class="trophy-icon">🏆</div>
+          <div class="reward-details">
+            <h3>1st RUNNER UP</h3>
+            <div class="reward-amount">₹3,000</div>
+            <div class="reward-description">The second-best project will receive a cash prize sponsored by Adya.ai, along with a trophy and certificates.</div>
+          </div>
+        </div>
+        
+        <div class="reward-item">
+          <div class="trophy-icon">🏆</div>
+          <div class="reward-details">
+            <h3>2nd RUNNER UP</h3>
+            <div class="reward-amount">₹2,000</div>
+            <div class="reward-description">The third-best project will win a cash prize sponsored by Adya.ai, along with a trophy and certificate.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Judges Section -->
+<section class="judges-section" style="padding:80px 10%; background:#1a1a2e; color:#fff; text-align:center;">
+  <h2 style="font-size:2.5rem; margin-bottom:50px; font-weight:700;">Meet the Judges of Phase 2</h2>
+  <div class="judges-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:40px; max-width:1200px; margin:0 auto;">
+    
+    <!-- Judge 1 -->
+    <div class="judge-card" style="background:rgba(255,255,255,0.05); padding:25px; border-radius:15px; backdrop-filter:blur(10px);">
+      <div style="width:140px;height:140px;margin:0 auto 20px;border-radius:50%;overflow:hidden;border:2px solid #26bde2;">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQEvHPXRE559NA/profile-displayphoto-crop_800_800/B56ZlBANT7HQAI-/0/1757732199113?e=1762387200&v=beta&t=QiWjfI2HK3Mx3F4ikWnmIM30GtLsw-1h6BXjR__2LKg" alt="Rubin Kumar K" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <h3 style="font-size:1.3rem;margin-bottom:10px;color:#26bde2;">Rubin Kumar K</h3>
+      <p style="font-size:1rem;margin-bottom:5px;">Software Developer @ Adya</p>
+      <p style="font-size:0.9rem;color:#ccc;">Coimbatore, Tamil Nadu, India</p>
+      <a href="https://www.linkedin.com/in/rubin-kumar-k-78628020a/overlay/about-this-profile/" target="_blank" style="display:inline-block;margin-top:15px;color:#26bde2;font-size:1.2rem;text-decoration:none;">LinkedIn</a>
+    </div>
+    
+    <!-- Judge 2 -->
+    <div class="judge-card" style="background:rgba(255,255,255,0.05); padding:25px; border-radius:15px; backdrop-filter:blur(10px);">
+      <div style="width:140px;height:140px;margin:0 auto 20px;border-radius:50%;overflow:hidden;border:2px solid #26bde2;">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFLqJqFU6BTGA/profile-displayphoto-shrink_800_800/B56ZaG9ttZHUAg-/0/1746021049714?e=1762387200&v=beta&t=sIcclPClddBkM6Ot0Z1OfsAnE54jqx2P-d9ha7MuFZI" alt="Saravanamuthu S" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <h3 style="font-size:1.3rem;margin-bottom:10px;color:#26bde2;">Saravanamuthu S</h3>
+      <p style="font-size:1rem;margin-bottom:5px;">Software Developer @ Adya</p>
+      <p style="font-size:0.9rem;color:#ccc;">Coimbatore, Tamil Nadu, India</p>
+      <a href="https://www.linkedin.com/in/saravanamuthu-s/overlay/about-this-profile/" target="_blank" style="display:inline-block;margin-top:15px;color:#26bde2;font-size:1.2rem;text-decoration:none;">LinkedIn</a>
+    </div>
+
+  </div>
+</section>
+
+  <section>
+    <h2>Requirements</h2>
+    <div class="requirements">
+      <div class="req-card">✅ Google Drive PPT Link</div>
+      <div class="req-card">✅ GitHub Repo Link</div>
+      <div class="req-card">✅ Deployment Link</div>
+    </div>
+  </section>
+<!-- FAQ Section -->
+<section id="faq" style="padding: 80px 10%; background: #1a1a2e; color: #fff; text-align: center;">
+  <h2 style="font-size: 2.8rem; margin-bottom: 50px; font-weight: 700;">Frequently Asked Questions</h2>
+  <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+    
+    <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
+      <img src="https://via.placeholder.com/80" alt="Q1" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:10px;">Can our team change members after registration?</h3>
+        <p style="color:#ccc; line-height:1.6;">No, team members or the team leader cannot be changed after registration. Once registered, the team composition must remain the same.</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
+      <img src="https://via.placeholder.com/80" alt="Q2" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:10px;">Is there a specific format for the Idea Submission?</h3>
+        <p style="color:#ccc; line-height:1.6;">Yes, the idea must be submitted in a PowerPoint presentation (PPT) with a maximum of 7 slides. You can download the PPT template from the website.</p>
+      </div>
+    </div>
+    
+   
+    
+    <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
+      <img src="https://via.placeholder.com/80" alt="Q4" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+      <div>
+        <h3 style="font-size:1.5rem; margin-bottom:10px;">What are the key evaluation criteria for the idea submission?</h3>
+        <p style="color:#ccc; line-height:1.6;">The evaluation will focus on the originality of the idea, its alignment with SDGs, technical complexity, feasibility, and potential for meaningful impact. Additionally, user experience and future development opportunities will be considered.</p>
+      </div>
+    </div>
+    <div style="display: flex; margin-bottom: 40px; align-items: flex-start;">
+  <img src="https://via.placeholder.com/80" alt="Q6" style="width:80px; height:80px; border-radius:10px; margin-right:20px; object-fit:cover;">
+  <div>
+    <h3 style="font-size:1.5rem; margin-bottom:10px;">May I use the Adya.ai platform in Round 1?</h3>
+    <p style="color:#ccc; line-height:1.6;">It’s not compulsory for Round 1, but you will need to use the Adya.ai platform in Round 2 for sure.</p>
+  </div>
+</div>
+
+   
+
+  </div>
+</section>
+<!-- Partners & Collaboration Section -->
+<section id="partners" style="padding:80px 10%; background:#1a1a2e; color:#fff; text-align:center;">
+  <h2 style="font-size:2.8rem; margin-bottom:20px; font-weight:700;">Organized By</h2>
+  <p style="font-size:1.2rem; margin-bottom:40px;">Department of Computer Science and Engineering<br>in collaboration with GDG<br>Sponsored by Adya.ai</p>
+  
+  <div style="display:flex; justify-content:center; align-items:center; gap:60px; flex-wrap:wrap;">
+    <!-- Dept CSE Logo/Text -->
+
+  <div style="display:flex; justify-content:center; align-items:flex-start; gap:60px; flex-wrap:wrap;">
+    <div style="max-width:200px; text-align:center;">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.-b50ZP1RraQSyWFU5eJMHAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Dept. of CSE" style="width:180px; height:180px; object-fit:contain; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+      <p style="margin-top:12px; font-weight:600;">Dept. of CSE - SECE</p>
+    </div>
+    <div style="max-width:200px; text-align:center;">
+      <img src="https://codeathon-thiran.vercel.app/gdglogo.png" alt="GDG" style="width:180px; height:180px; object-fit:contain; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+      <p style="margin-top:12px; font-weight:600;">Google Developer Groups - On Campus SECE</p>
+    </div>
+    <div style="max-width:200px; text-align:center;">
+      <img src="https://th.bing.com/th?q=Adya+Home+Ai+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.4&pid=InlineBlock&rm=3&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247" alt="Adya.ai" style="width:180px; height:180px; object-fit:contain; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+      <p style="margin-top:12px; font-weight:600;">Sponsored by Adya.ai</p>
+    </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+
+  <section>
+    <h2>Final Evaluation</h2>
+    <p>The final round will be conducted offline at the Collab Space on Oct 11. Teams will be given additional problem statements and asked to extend their solutions using Adya.ai. Evaluation will be based on technical implementation, innovation, and overall presentation quality.</p>
+  </section>
+
+  <!-- Footer Section -->
+<footer style="background:#1a1a2e; color:#ccc; padding:60px 10%; font-family:'Poppins',sans-serif;">
+  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; max-width:1200px; margin:0 auto;">
+    
+    <!-- College Info -->
+    <div style="flex:1; min-width:220px;">
+      <h4 style="color:#fff; font-size:1.2rem; margin-bottom:12px;">Sri Eshwar College of Engineering</h4>
+      <p style="font-size:0.95rem; line-height:1.5;">
+        <span style="display:inline-block; margin-right:8px;">📍</span>
+        Collab Space-SECE Campus
+      </p>
+    </div>
+    
+    <!-- Faculty Coordinators -->
+    <div style="flex:1; min-width:220px;">
+      <h4 style="color:#fff; font-size:1.2rem; margin-bottom:12px;">Faculty Coordinators</h4>
+      <p style="font-size:0.95rem; line-height:1.6;">
+       Mr.M.Karthick Raja Assistant Professor
+      </p>
+    </div>
+    
+    <!-- GDG Coordinators -->
+    <div style="flex:1; min-width:220px;">
+      <h4 style="color:#fff; font-size:1.2rem; margin-bottom:12px;">SLC Team</h4>
+      <p style="font-size:0.95rem; line-height:1.6;">
+        Teja Sai T G<br>
+        Hemavarna S<br>
+        Vasanth M
+      </p>
+    </div>
+    
+    <!-- Social Links -->
+    <div style="flex:1; min-width:220px; text-align:left;">
+  <h4 style="color:#fff; font-size:1.2rem; margin-bottom:12px;">Find Us Here:</h4>
+  <div style="display:flex; gap:15px; align-items:center;">
+    <a href="https://www.linkedin.com/in/department-of-cse-a725a3245/" target="_blank" style="display:inline-block; width:32px; height:32px;">
+      <img src="" alt="LinkedIn" style="width:100%; height:100%; object-fit:contain;">
+    </a>
+    <a href="https://www.instagram.com/srieshwar_cbe/" target="_blank" style="display:inline-block; width:32px; height:32px;">
+      <img src="https://www.bing.com/th/id/OIP.gB0IPp1YXxDdds6X2cKocgHaHZ?w=205&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2" alt="Instagram" style="width:100%; height:100%; object-fit:contain;">
+    </a>
+    
+  </div>
+</div>
+
+
+  </div>
+
+  <div style="text-align:center; margin-top:40px; font-size:0.85rem; color:#777;">
+    © 2025 SLC DEPT OF CSE-SECE. All Rights Reserved.
+  </div>
+</footer>
+
+  <style>
+    /* Site Navbar */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+.site-nav .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-nav .logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.site-nav .edition {
+  color: #ff4db3;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-left: 8px;
+}
+.site-nav .nav-links {
+  list-style: none;
+  display: flex;
+}
+.site-nav .nav-links li {
+  margin-left: 25px;
+}
+.site-nav .nav-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.site-nav .nav-links a:hover {
+  color: #fff;
+}
+.site-nav .download-btn {
+  background: #00aaff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: background 0.3s;
+}
+.site-nav .download-btn:hover {
+  background: #0088cc;
+}
+
+/* Prevent content hiding under navbar */
+body {
+  padding-top: 60px;
+}
+
+  </style>
+
+  <script>
+    const countdown = () => {
+      const endDate = new Date("Oct 9, 2025 9:00:00").getTime();
+      const now = new Date().getTime();
+      const gap = endDate - now;
+
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      const days = Math.floor(gap / day);
+      const hours = Math.floor((gap % day) / hour);
+      const minutes = Math.floor((gap % hour) / minute);
+      const seconds = Math.floor((gap % minute) / second);
+
+      document.getElementById('days').innerText = days;
+      document.getElementById('hours').innerText = hours;
+      document.getElementById('minutes').innerText = minutes;
+      document.getElementById('seconds').innerText = seconds;
+    };
+    setInterval(countdown, 1000);
+  </script>
+</body>
+</html>
